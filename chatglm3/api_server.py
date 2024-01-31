@@ -17,7 +17,7 @@ from chatglm3.api_server_utils import process_response, generate_chatglm3, gener
 from sentence_transformers import SentenceTransformer
 from sse_starlette.sse import EventSourceResponse
 
-"""
+'''
 chatglm3的openai封装
 
 This script implements an API for the ChatGLM3-6B model,
@@ -44,7 +44,7 @@ Note:
     Users need to configure their special tokens and can enable multi-GPU support as per the provided instructions.
     Embedding Models only support in One GPU.
 
-"""
+'''
 
 # Set up limit request time
 EventSourceResponse.DEFAULT_PING_INTERVAL = 1000
@@ -170,7 +170,7 @@ class ChatCompletionResponse(BaseModel):
 
 @app.get("/health")
 async def health() -> Response:
-    """Health check."""
+    '''Health check.'''
     return Response(status_code=200)
 
 
@@ -180,10 +180,10 @@ async def get_embeddings(request: EmbeddingRequest):
     embeddings = [embedding.tolist() for embedding in embeddings]
 
     def num_tokens_from_string(string: str) -> int:
-        """
+        '''
         Returns the number of tokens in a text string.
         use cl100k_base tokenizer
-        """
+        '''
         encoding = tiktoken.get_encoding('cl100k_base')
         num_tokens = len(encoding.encode(string))
         return num_tokens
@@ -259,13 +259,13 @@ async def create_chat_completion(request: ChatCompletionRequest):
         if isinstance(function_call, dict):
             function_call = FunctionCallResponse(**function_call)
 
-            """
+            '''
             In this demo, we did not register any tools.
             You can use the tools that have been implemented in our `tools_using_demo` and implement your own streaming tool implementation here.
             Similar to the following method:
                 function_args = json.loads(function_call.arguments)
                 tool_response = dispatch_tool(tool_name: str, tool_params: dict)
-            """
+            '''
             tool_response = ""
 
             if not gen_params.get("messages"):
@@ -403,7 +403,7 @@ async def predict(model_id: str, params: dict):
 
 
 def predict_stream(model_id, gen_params):
-    """
+    '''
     The function call is compatible with stream mode output.
 
     The first seven characters are determined.
@@ -413,7 +413,7 @@ def predict_stream(model_id, gen_params):
     :param model_id:
     :param gen_params:
     :return:
-    """
+    '''
     output = ""
     is_function_call = False
     has_send_first_chunk = False
@@ -483,13 +483,13 @@ def predict_stream(model_id, gen_params):
 
 
 async def parse_output_text(model_id: str, value: str):
-    """
+    '''
     Directly output the text content of value
 
     :param model_id:
     :param value:
     :return:
-    """
+    '''
     choice_data = ChatCompletionResponseStreamChoice(
         index=0,
         delta=DeltaMessage(role="assistant", content=value),
@@ -509,7 +509,7 @@ async def parse_output_text(model_id: str, value: str):
 
 
 def contains_custom_function(value: str) -> bool:
-    """
+    '''
     Determine whether 'function_call' according to a special function prefix.
 
     For example, the functions defined in "tools_using_demo/tool_register.py" are all "get_xxx" and start with "get_"
@@ -518,7 +518,7 @@ def contains_custom_function(value: str) -> bool:
 
     :param value:
     :return:
-    """
+    '''
     return value and 'get_' in value
 
 

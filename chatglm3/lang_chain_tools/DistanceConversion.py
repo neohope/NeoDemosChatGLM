@@ -6,9 +6,9 @@ from typing import Type
 from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
 
-"""
+'''
 langchain工具，距离转换
-"""
+'''
 
 class DistanceConversionInput(BaseModel):
     distance: float = Field(description="The numerical value of the distance to convert")

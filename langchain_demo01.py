@@ -11,7 +11,7 @@ from chatglm3.tools.Weather import Weather
 from chatglm3.tools.DistanceConversion import DistanceConverter
 
 
-"""
+'''
 lainchan调用chatgltm3，并使用了自定义工具
 
 This script demonstrates the use of the LangChain's StructuredChatAgent and AgentExecutor alongside various tools
@@ -62,7 +62,7 @@ Success example:
 
 ****************
 
-"""
+'''
 
 MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/chatglm3-6b')
 

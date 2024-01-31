@@ -4,10 +4,10 @@
 import os
 from openai import OpenAI
 
-"""
+'''
 通过openai接口，调用chatglm3服务
 对应chatglm3/api_server.py
-"""
+'''
 
 base_url = EMBEDDING_PATH = os.environ.get('SERVER_BASE_URL', 'http://127.0.0.1:8000/v1/')
 client = OpenAI(api_key="EMPTY", base_url=base_url)

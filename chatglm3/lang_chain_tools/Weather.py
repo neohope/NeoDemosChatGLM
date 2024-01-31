@@ -7,9 +7,9 @@ from typing import Type, Any
 from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
 
-"""
+'''
 langchain工具，天气查询
-"""
+'''
 
 class WeatherInput(BaseModel):
     location: str = Field(description="the location need to check the weather")

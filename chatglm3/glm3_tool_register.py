@@ -8,9 +8,9 @@ from pprint import pformat
 from types import GenericAlias
 from typing import get_origin, Annotated
 
-"""
+'''
 向chatglm注册工具，让模型实现工具调用
-"""
+'''
 
 _TOOL_HOOKS = {}
 _TOOL_DESCRIPTIONS = {}
@@ -76,9 +76,9 @@ def random_number_generator(
         seed: Annotated[int, 'The random seed used by the generator', True],
         range: Annotated[tuple[int, int], 'The range of the generated numbers', True],
 ) -> int:
-    """
+    '''
     Generates a random number x, s.t. range[0] <= x < range[1]
-    """
+    '''
     if not isinstance(seed, int):
         raise TypeError("Seed must be an integer")
     if not isinstance(range, tuple):
@@ -94,9 +94,9 @@ def random_number_generator(
 def get_weather(
         city_name: Annotated[str, 'The name of the city to be queried', True],
 ) -> str:
-    """
+    '''
     Get the current weather for `city_name`
-    """
+    '''
 
     if not isinstance(city_name, str):
         raise TypeError("City name must be a string")

@@ -6,9 +6,9 @@ from typing import Type
 from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
 
-"""
+'''
 langchain工具，计算器
-"""
+'''
 
 class CalculatorInput(BaseModel):
     calculation: str = Field(description="calculation to perform")

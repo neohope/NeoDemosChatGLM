@@ -8,9 +8,9 @@ from transformers import PreTrainedModel, PreTrainedTokenizer
 from transformers.generation.logits_process import LogitsProcessor
 from typing import Union, Tuple
 
-"""
+'''
 chatglm3的openai封装工具类
-"""
+'''
 
 class InvalidScoreLogitsProcessor(LogitsProcessor):
     def __call__(

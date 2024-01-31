@@ -4,9 +4,9 @@ from langchain.llms.base import LLM
 from transformers import AutoTokenizer, AutoModel, AutoConfig
 from typing import List, Optional
 
-"""
+'''
 ChatGLM3的langchain封装
-"""
+'''
 
 class ChatGLM3(LLM):
     max_token: int = 8192
@@ -64,7 +64,7 @@ class ChatGLM3(LLM):
             "content": "Answer the following questions as best as you can. You have access to the following tools:",
             "tools": tools_json
         })
-        query = f"""{prompt.split("Human: ")[-1].strip()}"""
+        query = f'''{prompt.split("Human: ")[-1].strip()}'''
         return ans, query
 
     def _extract_observation(self, prompt: str):
@@ -97,21 +97,21 @@ class ChatGLM3(LLM):
                     print("*****Action*****")
                     print(action_json)
                     print("*****Answer*****")
-                    return f"""
+                    return f'''
 Action: 
 ```
 {json.dumps(action_json, ensure_ascii=False)}
-```"""
+```'''
         final_answer_json = {
             "action": "Final Answer",
             "action_input": self.history[-1]["content"]
         }
         self.has_search = False
-        return f"""
+        return f'''
 Action: 
 ```
 {json.dumps(final_answer_json, ensure_ascii=False)}
-```"""
+```'''
 
     def _call(self, prompt: str, history: List = [], stop: Optional[List[str]] = ["<|user|>"]):
         if not self.has_search:
