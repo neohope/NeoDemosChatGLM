@@ -14,6 +14,11 @@ from streamlit.delta_generator import DeltaGenerator
 from client import get_client
 from conversation import postprocess_text, preprocess_text, Conversation, Role
 
+'''
+支持编写Python代码的AI助手
+使用了jupyter_client.KernelManager执行代码
+'''
+
 IPYKERNEL = os.environ.get('IPYKERNEL', 'chatglm3-demo')
 
 SYSTEM_PROMPT = '你是一位智能AI助手，你叫ChatGLM，你连接着一台电脑，但请注意不能联网。在使用Python解决任务时，你可以运行代码并得到结果，如果运行结果有错误，你需要尽可能对代码进行改进。你可以处理用户上传到电脑上的文件，文件默认存储路径是/mnt/data/。'
