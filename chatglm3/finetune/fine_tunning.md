@@ -181,21 +181,26 @@ python inference_hf.py your_finetune_path --prompt your_prompt
 
 ```python
 def load_model_and_tokenizer(
-        model_dir: Union[str, Path], trust_remote_code: bool = True
+        model_dir: Union[str, Path]
 ) -> tuple[ModelType, TokenizerType]:
     model_dir = _resolve_path(model_dir)
     if (model_dir / 'adapter_config.json').exists():
         model = AutoPeftModelForCausalLM.from_pretrained(
-            model_dir, trust_remote_code=trust_remote_code, device_map='auto'
+            model_dir, 
+            trust_remote_code=True, 
+            device_map='auto'
         )
         tokenizer_dir = model.peft_config['default'].base_model_name_or_path
     else:
         model = AutoModelForCausalLM.from_pretrained(
-            model_dir, trust_remote_code=trust_remote_code, device_map='auto'
+            model_dir, 
+            trust_remote_code=True, 
+            device_map='auto'
         )
         tokenizer_dir = model_dir
     tokenizer = AutoTokenizer.from_pretrained(
-        tokenizer_dir, trust_remote_code=trust_remote_code
+        tokenizer_dir, 
+        trust_remote_code=True
     )
     return model, tokenizer
 ```
